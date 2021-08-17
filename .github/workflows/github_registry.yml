@@ -40,7 +40,7 @@ jobs:
           file: ./web.dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/nodejs-web:latest
+          tags: ghcr.io/ahmad-faqehi/nodejs-web:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
@@ -52,7 +52,7 @@ jobs:
           file: ./api.dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/nodejs-api:latest
+          tags: ghcr.io/ahmad-faqehi/nodejs-api:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
