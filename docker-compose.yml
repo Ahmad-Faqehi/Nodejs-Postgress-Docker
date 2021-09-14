@@ -1,0 +1,57 @@
+version: "3"
+
+services:
+
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: api.dockerfile
+    environment:
+      CONNECTION_STRING: postgres://ahmad:root@postgresdb/dojo_courses
+    depends_on: 
+      - postgresdb 
+    networks:
+      - public
+      - private
+
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: web.dockerfile
+    ports:
+      - 80:3000
+    environment:
+      API_URL: http://api:3001/data
+    depends_on:
+      - api
+    networks:
+      - public
+
+  postgresdb:
+    image: postgres:11.2-alpine
+    container_name: postgresdb
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ahmad
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: dojo_courses
+    volumes:
+      - ./sql_scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - pg_volume:/var/lib/postgresql/data
+    networks:
+      - private
+
+volumes:
+  pg_volume:
+
+networks:
+  public:
+    name: public
+    driver: bridge
+    
+  private:
+    name: private
+    driver: bridge  

@@ -8,8 +8,6 @@ const pool = new Pool({
 });
 
 app.get("/data", function (req, res) {
-  // res.setHeader('Access-Control-Allow-Origin', '*');
-  // res.setHeader('Content-type', 'application/json');
 
   pool.query(
     "SELECT course, description FROM dojo_courses;",

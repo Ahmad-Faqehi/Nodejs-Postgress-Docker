@@ -4,7 +4,6 @@ const request = require("request");
 const app = express();
 const port = 3000;
 const restApiUrl = process.env.API_URL;
-//const restApiUrl = 'http://127.17.0.1:3001/data';
 
 app.get("/", function (req, res) {
   request(
