@@ -40,7 +40,7 @@ docker ps
 <p>Will find three of containers running. You can access the application from browser via this url:</p>
 
 ```shell script
-http://localhost:3000
+http://localhost
 ```
 
 ### 3. Remove all containers
